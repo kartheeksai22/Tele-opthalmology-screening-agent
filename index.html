@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tele-Ophthalmology Screening Assistant | Early detection saves vision</title>
+    <!-- Modern premium font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Premium Medical Color Palette */
+            --primary: #0ea5e9;
+            /* Light Blue */
+            --primary-hover: #0284c7;
+            --secondary: #6366f1;
+            /* Indigo */
+            --accent: #f43f5e;
+            /* Rose */
+            --bg-dark: #0f172a;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Animated gradient background */
+            background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 50%, #fff1f2 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Navbar with Glassmorphism */
+        nav {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            -webkit-text-fill-color: var(--primary);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: white;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+            color: var(--bg-dark);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 5%;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        /* Premium Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Action Buttons Grid Layout */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-box {
+            border: 2px dashed rgba(99, 102, 241, 0.4);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-box:hover,
+        .action-box.dragover {
+            border-color: var(--secondary);
+            background: rgba(99, 102, 241, 0.05);
+            transform: scale(1.03);
+        }
+
+        .action-icon {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .action-box:hover .action-icon {
+            transform: translateY(-5px);
+            color: var(--primary);
+        }
+
+        .action-text {
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Live Camera Container */
+        #camera-container {
+            display: none;
+            position: relative;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        #camera-stream {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .camera-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .snap-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .snap-btn:active {
+            transform: scale(0.9);
+        }
+
+        .close-cam-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        /* Image Preview */
+        .preview-container {
+            display: none;
+            position: relative;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .preview-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            max-height: 280px;
+            border: 4px solid white;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: #e11d48;
+        }
+
+        /* Action Button */
+        .analyze-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1.8rem;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analyze-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s;
+        }
+
+        .analyze-btn:hover::after {
+            left: 100%;
+        }
+
+        .analyze-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Results Display */
+        .results-card {
+            display: none;
+        }
+
+        .result-header {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .result-severity {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--bg-dark);
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .sev-nodr {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        .sev-mild {
+            background: #fef08a;
+            color: #a16207;
+            border: 1px solid #fde047;
+        }
+
+        .sev-moderate {
+            background: #fed7aa;
+            color: #c2410c;
+            border: 1px solid #fdba74;
+        }
+
+        .sev-severe {
+            background: #fecaca;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        .sev-proliferative {
+            background: #fecdd3;
+            color: #be123c;
+            border: 1px solid #fda4af;
+        }
+
+        .confidence-container {
+            margin-top: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .confidence-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .confidence-bar-bg {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+        }
+
+        .confidence-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 1.5s;
+            border-radius: 5px;
+        }
+
+        .new-analysis-btn {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+
+        #error-message {
+            color: white;
+            background: var(--accent);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* How to Use Section */
+        .instructions-section {
+            padding: 5rem 5%;
+            background: white;
+            margin-top: 4rem;
+        }
+
+        .instructions-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--bg-dark);
+            margin-bottom: 3rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            border: 4px solid white;
+        }
+
+        .step-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+
+        .step-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-about p {
+            color: #94a3b8;
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 400px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Performance Dashboard Styles */
+        .dashboard-section { padding: 4rem 5%; background: #f8fafc; border-top: 1px solid #e2e8f0; }
+        .dashboard-title { text-align: center; font-size: 2.2rem; font-weight: 800; margin-bottom: 2.5rem; color: var(--bg-dark); }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto 3rem; }
+        .metric-card { background: white; padding: 2rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .metric-value { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+        .metric-label { font-size: 1rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; }
+        
+        .cm-container { max-width: 700px; margin: 0 auto; background: white; padding: 2rem; border-radius: 24px; box-shadow: var(--shadow); overflow-x: auto; }
+        .cm-table { width: 100%; border-collapse: separate; border-spacing: 4px; }
+        .cm-header { font-weight: 700; text-align: center; padding: 10px; font-size: 0.9rem; color: var(--text-light); }
+        .cm-cell { width: 80px; height: 80px; text-align: center; vertical-align: middle; border-radius: 8px; font-weight: 700; font-size: 1.2rem; color: white; transition: transform 0.3s; }
+        .cm-cell:hover { transform: scale(1.1); z-index: 10; cursor: default; }
+        .cm-label-y { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--text-light); font-weight: 700; }
+
+        @media (max-width: 900px) {
+            .steps-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .action-grid { grid-template-columns: 1fr; }
+            nav .nav-links { display: none; }
+        }
+
+        /* ===== TAB SYSTEM ===== */
+        .tab-bar { display:flex; gap:0.5rem; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border); padding:0.6rem 5%; position:sticky; top:69px; z-index:90; overflow-x:auto; }
+        .tab-btn { padding:0.55rem 1.3rem; border-radius:20px; border:none; font-weight:700; font-size:0.95rem; cursor:pointer; background:transparent; color:var(--text-light); transition:all 0.25s; white-space:nowrap; display:flex; align-items:center; gap:0.45rem; }
+        .tab-btn i { font-size:0.85rem; }
+        .tab-btn.active { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; box-shadow:0 4px 12px rgba(99,102,241,0.35); }
+        .tab-btn:hover:not(.active) { background:rgba(14,165,233,0.1); color:var(--primary); }
+        .tab-content { display:none; } .tab-content.active { display:block; }
+
+        /* ===== PATIENT PROFILE MODAL ===== */
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(6px); z-index:999; overflow-y:auto; }
+        .modal-overlay.open { display:flex; align-items:flex-start; justify-content:center; padding:2rem 1rem; }
+        .modal-box { background:#fff; border-radius:24px; padding:2.5rem; max-width:700px; width:100%; box-shadow:0 30px 60px rgba(0,0,0,0.25); animation:fadeInDown 0.35s ease; }
+        .modal-box h2 { font-size:1.8rem; font-weight:800; margin-bottom:0.4rem; color:var(--bg-dark); }
+        .modal-box .subtitle { color:var(--text-light); margin-bottom:2rem; font-size:0.95rem; }
+        .form-section-title { font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--secondary); margin:1.5rem 0 0.8rem; display:flex; align-items:center; gap:0.5rem; }
+        .form-section-title i { font-size:0.8rem; }
+        .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+        .form-grid.single { grid-template-columns:1fr; }
+        .form-grid.triple { grid-template-columns:1fr 1fr 1fr; }
+        .form-field { display:flex; flex-direction:column; gap:0.35rem; }
+        .form-field label { font-size:0.85rem; font-weight:700; color:var(--text-dark); }
+        .form-field input, .form-field select { padding:0.65rem 0.9rem; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.95rem; font-family:'Outfit',sans-serif; transition:border-color 0.2s; outline:none; }
+        .form-field input:focus, .form-field select:focus { border-color:var(--primary); }
+        .checkbox-group { display:flex; flex-wrap:wrap; gap:0.6rem; }
+        .checkbox-group label { display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; font-weight:600; cursor:pointer; padding:0.4rem 0.8rem; border-radius:8px; border:1.5px solid #e2e8f0; transition:all 0.2s; }
+        .checkbox-group label:hover { border-color:var(--primary); background:rgba(14,165,233,0.05); }
+        .checkbox-group input[type=checkbox] { display:inline; width:auto; appearance:auto; }
+        .modal-actions { display:flex; gap:1rem; margin-top:2rem; }
+        .btn-save { flex:1; padding:1rem; background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; border:none; border-radius:12px; font-weight:700; font-size:1rem; cursor:pointer; }
+        .btn-cancel { padding:1rem 1.5rem; background:#f1f5f9; border:none; border-radius:12px; font-weight:700; cursor:pointer; }
+        .float-profile-btn { position:fixed; bottom:2rem; right:2rem; z-index:200; background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; border:none; border-radius:14px; padding:0.9rem 1.5rem; font-weight:700; font-size:0.95rem; cursor:pointer; box-shadow:0 10px 20px -5px rgba(99,102,241,0.4); display:flex; align-items:center; gap:0.5rem; transition:transform 0.2s, box-shadow 0.2s; }
+        .float-profile-btn:hover { transform:translateY(-3px); box-shadow:0 16px 28px -5px rgba(99,102,241,0.45); }
+
+        /* ===== PATIENT DASHBOARD ===== */
+        .pdash { padding:2.5rem 5%; max-width:1300px; margin:0 auto; }
+        .pdash-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; margin-bottom:1.8rem; }
+        .pdash-grid.three { grid-template-columns:1fr 1fr 1fr; }
+        .pdash-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            transition: box-shadow 0.3s;
+        }
+        .pdash-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .pdash-card h3 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pdash-card h3 i { color: var(--primary); font-size: 0.9rem; }
+        /* Health Score Gauge */
+        .gauge-wrap { display:flex; flex-direction:column; align-items:center; }
+        .gauge-svg { width:180px; height:100px; overflow:visible; }
+        .gauge-score-num { font-size:2.5rem; font-weight:900; text-align:center; margin-top:0.5rem; }
+        .gauge-label { font-size:0.95rem; font-weight:700; text-align:center; }
+        /* Streak badge */
+        .streak-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.7rem 1.3rem; border-radius:50px; font-size:1.3rem; font-weight:800; background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(99,102,241,0.1)); color:var(--primary); border:2px solid rgba(14,165,233,0.3); }
+        .streak-info { margin-top:1rem; font-size:0.9rem; color:var(--text-light); }
+        /* Risk bar */
+        .risk-bar-wrap { margin-top:0.5rem; }
+        .risk-labels { display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; color:var(--text-light); margin-bottom:0.4rem; }
+        .risk-track { height:14px; border-radius:7px; background:linear-gradient(90deg,#22c55e,#eab308,#f97316,#ef4444); position:relative; overflow:visible; }
+        .risk-needle { position:absolute; top:-6px; width:4px; height:26px; background:#1e293b; border-radius:2px; transform:translateX(-50%); transition:left 1s; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+        .risk-result { margin-top:0.8rem; font-size:1.1rem; font-weight:800; text-align:center; }
+        /* Sparkline */
+        .sparkline-svg { width:100%; height:80px; }
+        /* Medical params grid */
+        .params-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem; }
+        .param-chip { padding:0.7rem; border-radius:12px; background:#f8fafc; border:1px solid #e2e8f0; }
+        .param-chip .p-label { font-size:0.72rem; font-weight:700; text-transform:uppercase; color:var(--text-light); }
+        .param-chip .p-value { font-size:1.1rem; font-weight:800; color:var(--bg-dark); margin-top:0.15rem; }
+        .param-chip.warn .p-value { color:#f97316; }
+        .param-chip.danger .p-value { color:#ef4444; }
+        .param-chip.good .p-value { color:#22c55e; }
+        /* AI Suggestions */
+        .suggestion-list { display:flex; flex-direction:column; gap:0.8rem; }
+        .suggestion-item { padding:0.9rem 1.1rem; border-radius:12px; font-size:0.9rem; font-weight:600; line-height:1.5; display:flex; gap:0.7rem; align-items:flex-start; }
+        .suggestion-item.info { background:#eff6ff; color:#1e40af; border-left:4px solid #3b82f6; }
+        .suggestion-item.warn { background:#fffbeb; color:#92400e; border-left:4px solid #f59e0b; }
+        .suggestion-item.danger { background:#fff1f2; color:#9f1239; border-left:4px solid #f43f5e; }
+        .suggestion-item.good { background:#f0fdf4; color:#14532d; border-left:4px solid #22c55e; }
+        /* Daily Tracker */
+        .tracker-form { display:grid; gap:1.1rem; }
+        .tracker-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+        .diet-btns { display:flex; gap:0.6rem; flex-wrap:wrap; }
+        .diet-btn { padding:0.5rem 1.1rem; border-radius:9px; border:2px solid #e2e8f0; font-weight:700; font-size:0.9rem; cursor:pointer; background:#fff; transition:all 0.2s; }
+        .diet-btn.selected.healthy { border-color:#22c55e; background:#f0fdf4; color:#15803d; }
+        .diet-btn.selected.moderate { border-color:#f59e0b; background:#fffbeb; color:#92400e; }
+        .diet-btn.selected.unhealthy { border-color:#ef4444; background:#fff1f2; color:#b91c1c; }
+        .med-toggle { display:flex; gap:0.8rem; }
+        .med-toggle button { flex:1; padding:0.7rem; border-radius:10px; font-weight:700; cursor:pointer; border:2px solid #e2e8f0; background:#fff; transition:all 0.2s; }
+        .med-toggle button.yes { border-color:#22c55e; background:#f0fdf4; color:#15803d; }
+        .med-toggle button.no { border-color:#ef4444; background:#fff1f2; color:#b91c1c; }
+        .water-display { font-size:1.3rem; font-weight:800; color:var(--primary); }
+        .submit-log-btn { padding:1rem; background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; border:none; border-radius:12px; font-weight:700; font-size:1rem; cursor:pointer; width:100%; margin-top:0.5rem; }
+        .alert-inline { padding:0.8rem 1rem; border-radius:10px; font-weight:700; margin-top:0.8rem; display:none; }
+        .alert-inline.danger { background:#fff1f2; color:#b91c1c; border:1px solid #fca5a5; }
+        .alert-inline.warn { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+        .alert-inline.good { background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; }
+
+        /* ===== HISTORY TIMELINE ===== */
+        .history-wrap { padding:2.5rem 5%; max-width:900px; margin:0 auto; }
+        .history-wrap h2 { font-size:2rem; font-weight:800; color:var(--bg-dark); margin-bottom:0.5rem; }
+        .history-wrap .sub { color:var(--text-light); margin-bottom:2rem; }
+        .timeline { display:flex; flex-direction:column; gap:1.2rem; position:relative; }
+        .timeline::before { content:''; position:absolute; left:28px; top:0; bottom:0; width:2px; background:#e2e8f0; }
+        .tl-card { display:flex; gap:1.2rem; position:relative; }
+        .tl-dot { width:60px; height:60px; min-width:60px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.5rem; z-index:1; box-shadow:0 0 0 4px #fff; }
+        .tl-body { flex:1; background:#fff; border-radius:16px; padding:1.2rem 1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.06); border:1px solid #f1f5f9; }
+        .tl-date { font-size:0.8rem; font-weight:700; color:var(--text-light); text-transform:uppercase; }
+        .tl-stage { font-size:1.2rem; font-weight:800; color:var(--bg-dark); margin:0.2rem 0; }
+        .tl-meta { font-size:0.85rem; color:var(--text-light); }
+        .tl-thumb { width:80px; height:60px; object-fit:cover; border-radius:8px; border:2px solid #e2e8f0; }
+        .tl-actions { display:flex; gap:0.6rem; margin-top:0.8rem; align-items:center; flex-wrap:wrap; }
+        .tl-compare-btn { padding:0.4rem 0.9rem; border-radius:8px; border:1.5px solid var(--primary); color:var(--primary); font-weight:700; font-size:0.82rem; cursor:pointer; background:transparent; transition:all 0.2s; }
+        .tl-compare-btn:hover { background:var(--primary); color:#fff; }
+        .empty-history { text-align:center; padding:4rem 2rem; color:var(--text-light); }
+        .empty-history i { font-size:4rem; margin-bottom:1rem; display:block; opacity:0.3; }
+        /* Compare modal */
+        .compare-modal { display:none; position:fixed; inset:0; background:rgba(15,23,42,0.7); z-index:1000; overflow-y:auto; align-items:flex-start; justify-content:center; padding:2rem 1rem; backdrop-filter:blur(6px); }
+        .compare-modal.open { display:flex; }
+        .compare-box { background:#fff; border-radius:24px; padding:2rem; max-width:860px; width:100%; box-shadow:0 30px 60px rgba(0,0,0,0.25); animation:fadeInDown 0.3s; }
+        .compare-box h3 { font-size:1.5rem; font-weight:800; margin-bottom:1.5rem; color:var(--bg-dark); }
+        .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+        .compare-item { text-align:center; }
+        .compare-item img { width:100%; border-radius:12px; max-height:300px; object-fit:cover; border:3px solid var(--primary); }
+        .compare-item .c-label { font-weight:800; margin-top:0.5rem; font-size:1rem; }
+        .compare-item .c-sub { font-size:0.85rem; color:var(--text-light); }
+        .btn-close-compare { margin-top:1.5rem; padding:0.9rem 2rem; background:#f1f5f9; border:none; border-radius:12px; font-weight:700; cursor:pointer; width:100%; }
+
+        @media (max-width:700px) {
+            .pdash-grid, .pdash-grid.three, .form-grid, .form-grid.triple, .compare-grid, .tracker-row { grid-template-columns:1fr; }
+            .params-grid { grid-template-columns:1fr 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-eye"></i> Tele-Ophthalmology Screening Assistant
+        </div>
+        <div class="header-controls">
+            <ul class="nav-links">
+                <li><a href="#" onclick="switchTab('home')" data-i18n="nav_home">Home</a></li>
+                <li><a href="#" onclick="switchTab('dashboard')" data-i18n="nav_dashboard">Patient Dashboard</a></li>
+                <li><a href="#" onclick="switchTab('history')" data-i18n="nav_history">History</a></li>
+            </ul>
+            <select class="lang-switch" id="lang-switch" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="te">తెలుగు (Telugu)</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+            </select>
+        </div>
+    </nav>
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <button class="tab-btn active" id="tab-home" onclick="switchTab('home')"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></button>
+        <button class="tab-btn" id="tab-dashboard" onclick="switchTab('dashboard')"><i class="fa-solid fa-chart-line"></i> <span data-i18n="nav_dashboard">Patient Dashboard</span></button>
+        <button class="tab-btn" id="tab-history" onclick="switchTab('history')"><i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="tab_history">Scan History</span></button>
+    </div>
+
+    <!-- ==================== HOME TAB ==================== -->
+    <div class="tab-content active" id="tab-content-home">
+    <div class="hero">
+        <h1 data-i18n="hero_title">Tele-Ophthalmology Screening Assistant</h1>
+        <p data-i18n="hero_subtitle">AI-powered Diabetic Retinopathy screening at the point of care. Upload a fundus
+            image or capture one via smartphone macro lens and get a clinical-grade severity assessment instantly.</p>
+    </div>
+
+    <div class="container">
+        <!-- Main Card -->
+        <div class="glass-card" id="main-card">
+
+            <div class="action-grid" id="action-grid">
+                <!-- Drop/Browse Photo -->
+                <div class="action-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-regular fa-image action-icon"></i>
+                    <h3 class="action-text" data-i18n="upload_btn">Upload Photo</h3>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+
+                <!-- Live Webcam Camera -->
+                <div class="action-box" onclick="openLiveCamera()">
+                    <i class="fa-solid fa-camera action-icon"></i>
+                    <h3 class="action-text" data-i18n="camera_btn">Open Live Camera</h3>
+                </div>
+            </div>
+
+            <!-- The Live Web Camera View -->
+            <div id="camera-container">
+                <video id="camera-stream" autoplay playsinline></video>
+                <div class="camera-overlay">
+                    <button class="close-cam-btn" onclick="closeCamera()"><i class="fa-solid fa-xmark"></i></button>
+                    <!-- Actual Snapshot Button -->
+                    <button class="snap-btn" onclick="snapPhoto()"><i class="fa-solid fa-camera"></i></button>
+                    <div style="width: 40px;"></div> <!-- spacer -->
+                </div>
+            </div>
+
+            <div class="preview-container" id="preview-container">
+                <img src="" id="image-preview" class="preview-image" alt="Retinal scan preview">
+                <button class="remove-btn" onclick="removeImage()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <button class="analyze-btn" id="analyze-btn" onclick="analyzeImage()">
+                <span id="btn-text" data-i18n="analyze_btn">Analyze Scan</span>
+                <div class="spinner" id="btn-spinner"></div>
+            </button>
+
+            <div id="error-message"></div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="glass-card results-card" id="results-card">
+            <h4 class="result-header" data-i18n="result_header">Diagnosis Result</h4>
+            <div class="result-severity" id="result-severity">--</div>
+            <div class="severity-badge" id="severity-badge">Analysis Complete</div>
+
+            <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;"
+                data-i18n="result_desc">
+                Based on our Vision Transformer (ViT) architecture trained on diverse clinical datasets.
+            </p>
+
+            <div class="confidence-container">
+                <div class="confidence-label">
+                    <span data-i18n="confidence">AI Confidence Score</span>
+                    <span id="confidence-value">0%</span>
+                </div>
+                <div class="confidence-bar-bg">
+                    <div class="confidence-bar-fill" id="confidence-fill"></div>
+                </div>
+            </div>
+
+            <!-- HeatMap Display -->
+            <div id="heatmap-container" style="display:none; margin-top:1.5rem; text-align:center;">
+                <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.5rem; text-transform: uppercase;"
+                    data-i18n="heatmap_title">AI Attention Heatmap</p>
+                <img id="heatmap-image" src=""
+                    style="width: 100%; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            </div>
+
+            <button class="new-analysis-btn" onclick="resetAnalysis()">
+                <i class="fa-solid fa-rotate-right" style="margin-right: 0.5rem;"></i><span data-i18n="new_analysis">New
+                    Analysis</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- How to use the Lens Section -->
+    <section class="instructions-section" id="instructions">
+        <h2 data-i18n="inst_title">How to Capture a Retinal Scan</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <i class="fa-solid fa-microscope step-icon"></i>
+                <h3 data-i18n="step1_title">Attach the Macro Lens</h3>
+                <p data-i18n="step1_desc">Clip the 20D or smartphone-specific macro lens securely over your phone's
+                    primary rear camera module.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <i class="fa-solid fa-arrows-to-eye step-icon"></i>
+                <h3 data-i18n="step2_title">Position the Patient</h3>
+                <p data-i18n="step2_desc">Turn on the smartphone flashlight. Hold the camera exactly 2 to 3 centimeters
+                    away from the patient's dilated pupil.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <i class="fa-solid fa-camera-retro step-icon"></i>
+                <h3 data-i18n="step3_title">Capture the Fundus</h3>
+                <p data-i18n="step3_desc">Click 'Open Camera'. Adjust the distance until the optic disc and macula come
+                    into sharp focus, then snap the photo.</p>
+            </div>
+        </div>
+    </section>
+
+
+    </div><!-- end home tab -->
+
+    <!-- ==================== PATIENT DASHBOARD TAB ==================== -->
+    <div class="tab-content" id="tab-content-dashboard">
+    <div class="pdash">
+        <!-- Row 1: Health Score + Streak + Risk -->
+        <div class="pdash-grid three">
+            <!-- Health Score Card -->
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-heart-pulse"></i> <span data-i18n="health_score">Health Score</span></h3>
+                <div class="gauge-wrap">
+                    <svg class="gauge-svg" viewBox="0 0 180 90">
+                        <path d="M20,85 A70 70 0 0 1 160,85" fill="none" stroke="#e2e8f0" stroke-width="14" stroke-linecap="round"/>
+                        <path id="gauge-fill" d="M20,85 A70 70 0 0 1 160,85" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" style="transition:stroke-dashoffset 1.2s ease,stroke 0.5s"/>
+                    </svg>
+                    <div class="gauge-score-num" id="health-score-val">--</div>
+                    <div class="gauge-label" id="health-score-label">Set up your profile</div>
+                </div>
+            </div>
+            <!-- Streak Card -->
+            <div class="pdash-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <h3><i class="fa-solid fa-fire"></i> <span data-i18n="daily_streak">Daily Streak</span></h3>
+                <div class="streak-badge" id="streak-badge">🔥 0 days</div>
+                <div class="streak-info" id="streak-info">Start logging daily to build your streak!</div>
+                <div style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-light);">Best streak: <strong id="best-streak">0 days</strong></div>
+            </div>
+            <!-- Risk Prediction Card -->
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="risk_6m">6-Month DR Risk</span></h3>
+                <div class="risk-bar-wrap">
+                    <div class="risk-labels"><span data-i18n="risk_low">Low</span><span data-i18n="risk_moderate">Moderate</span><span data-i18n="risk_high">High</span><span data-i18n="risk_critical">Critical</span></div>
+                    <div class="risk-track"><div class="risk-needle" id="risk-needle" style="left:5%"></div></div>
+                    <div class="risk-result" id="risk-result">— Enter profile data</div>
+                </div>
+            </div>
+        </div>
+        <!-- Row 2: Medical Params + AI Suggestions -->
+        <div class="pdash-grid">
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-pills"></i> <span data-i18n="medical_params">Medical Parameters</span></h3>
+                <div class="params-grid" id="params-grid">
+                    <div class="param-chip"><div class="p-label">HbA1c</div><div class="p-value" id="p-hba1c">--</div></div>
+                    <div class="param-chip"><div class="p-label">Fasting Sugar</div><div class="p-value" id="p-fast">--</div></div>
+                    <div class="param-chip"><div class="p-label">PP Sugar</div><div class="p-value" id="p-pp">--</div></div>
+                    <div class="param-chip"><div class="p-label">Blood Pressure</div><div class="p-value" id="p-bp">--</div></div>
+                    <div class="param-chip"><div class="p-label">Cholesterol</div><div class="p-value" id="p-chol">--</div></div>
+                    <div class="param-chip"><div class="p-label">Diabetes Duration</div><div class="p-value" id="p-dur">--</div></div>
+                    <div class="param-chip"><div class="p-label">BMI</div><div class="p-value" id="p-bmi">--</div></div>
+                    <div class="param-chip"><div class="p-label">Medications</div><div class="p-value" id="p-meds" style="font-size:0.9rem;">--</div></div>
+                    <div class="param-chip"><div class="p-label">Smoking</div><div class="p-value" id="p-smoke">--</div></div>
+                </div>
+            </div>
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-robot"></i> <span data-i18n="ai_suggestions">AI Suggestions</span></h3>
+                <div class="suggestion-list" id="suggestion-list">
+                    <div class="suggestion-item info"><span>ℹ️</span><span>Set up your patient profile to receive personalised AI suggestions.</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- Row 3: Sugar Sparkline + Daily Tracker -->
+        <div class="pdash-grid">
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-chart-area"></i> <span data-i18n="sugar_trend">Fasting Sugar Trend (Last 7 Days)</span></h3>
+                <svg class="sparkline-svg" id="sparkline-svg" viewBox="0 0 300 80" preserveAspectRatio="none"></svg>
+                <div style="text-align:center;margin-top:0.5rem;font-size:0.8rem;color:var(--text-light);">Dashed line = 126 mg/dL threshold</div>
+            </div>
+            <div class="pdash-card">
+                <h3><i class="fa-solid fa-pen-to-square"></i> <span data-i18n="todays_log">Today's Log</span></h3>
+                <div id="already-logged-msg" style="display:none;background:#f0fdf4;border-radius:12px;padding:1.2rem;color:#15803d;font-weight:700;text-align:center;"><span data-i18n="already_logged">✅ Today's data logged! Come back tomorrow.</span></div>
+                <div class="tracker-form" id="tracker-form">
+                    <div class="tracker-row">
+                        <div class="form-field">
+                            <label data-i18n="fasting_lbl">Fasting Sugar (mg/dL)</label>
+                            <input type="number" id="t-fast" placeholder="e.g. 110" min="40" max="600">
+                        </div>
+                        <div class="form-field">
+                            <label data-i18n="postmeal_lbl">Post-Meal Sugar (mg/dL)</label>
+                            <input type="number" id="t-pp" placeholder="e.g. 160" min="40" max="600">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label data-i18n="meds_lbl">Medications Taken Today?</label>
+                        <div class="med-toggle">
+                            <button id="med-yes" onclick="setMed(true)"><i class="fa-solid fa-check" style="color:#15803d"></i> <span data-i18n="yes_taken">Yes, taken</span></button>
+                            <button id="med-no" onclick="setMed(false)"><i class="fa-solid fa-xmark" style="color:#b91c1c"></i> <span data-i18n="not_yet">Not yet</span></button>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label data-i18n="diet_lbl">Diet Today</label>
+                        <div class="diet-btns">
+                            <button class="diet-btn" id="diet-healthy" onclick="setDiet('healthy')"><i class="fa-solid fa-leaf"></i> <span data-i18n="diet_healthy">Healthy</span></button>
+                            <button class="diet-btn" id="diet-moderate" onclick="setDiet('moderate')"><i class="fa-solid fa-utensils"></i> <span data-i18n="diet_moderate">Moderate</span></button>
+                            <button class="diet-btn" id="diet-unhealthy" onclick="setDiet('unhealthy')"><i class="fa-solid fa-burger"></i> <span data-i18n="diet_unhealthy">Unhealthy</span></button>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>Water Intake: <span class="water-display" id="water-txt">0 glasses</span></label>
+                        <input type="range" id="t-water" min="0" max="12" value="0" oninput="document.getElementById('water-txt').textContent=this.value+' glasses'" style="width:100%;">
+                    </div>
+                    <div class="form-field">
+                        <label data-i18n="activity_lbl">Physical Activity (minutes)</label>
+                        <input type="number" id="t-activity" placeholder="e.g. 30" min="0" max="300">
+                    </div>
+                    <div class="alert-inline" id="tracker-alert"></div>
+                    <button class="submit-log-btn" onclick="submitDailyLog()"><i class="fa-solid fa-floppy-disk" style="margin-right:0.4rem"></i><span data-i18n="save_log_btn">Save Today's Log</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div><!-- end dashboard tab -->
+
+    <!-- ==================== HISTORY TAB ==================== -->
+    <div class="tab-content" id="tab-content-history">
+    <div class="history-wrap">
+        <h2><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);margin-right:0.6rem"></i><span data-i18n="history_title">Scan History Timeline</span></h2>
+        <p class="sub" data-i18n="history_sub">All your AI retinal scan results, stored securely in the database.</p>
+        <div class="timeline" id="timeline-list">
+            <div class="empty-history"><i class="fa-regular fa-clock"></i>No scan history yet. Run an analysis from the Home tab to begin.</div>
+        </div>
+    </div>
+    </div><!-- end history tab -->
+
+    <!-- ==================== PATIENT PROFILE MODAL ==================== -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-box">
+            <h2><i class="fa-solid fa-user-circle" style="color:var(--primary)"></i> &nbsp;Patient Profile</h2>
+            <p class="subtitle">Your data stays on this device only. Fill in your latest clinical values for accurate risk prediction.</p>
+            <div class="form-section-title"><i class="fa-solid fa-id-card"></i> Demographics</div>
+            <div class="form-grid">
+                <div class="form-field"><label>Full Name</label><input type="text" id="pf-name" placeholder="e.g. Ravi Kumar"></div>
+                <div class="form-field"><label>Age</label><input type="number" id="pf-age" placeholder="e.g. 52" min="1" max="120"></div>
+                <div class="form-field"><label>Gender</label><select id="pf-gender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+                <div class="form-field"><label>Diabetes Duration (years)</label><input type="number" id="pf-dur" placeholder="e.g. 8" min="0" max="80"></div>
+            </div>
+            <div class="form-section-title"><i class="fa-solid fa-flask"></i> Medical Parameters</div>
+            <div class="form-grid triple">
+                <div class="form-field"><label>HbA1c (%)</label><input type="number" id="pf-hba1c" placeholder="e.g. 7.2" step="0.1" min="3" max="20"></div>
+                <div class="form-field"><label>Fasting Sugar (mg/dL)</label><input type="number" id="pf-fast" placeholder="e.g. 120" min="40" max="600"></div>
+                <div class="form-field"><label>Post-Prandial Sugar (mg/dL)</label><input type="number" id="pf-pp" placeholder="e.g. 160" min="40" max="600"></div>
+                <div class="form-field"><label>BP Systolic (mmHg)</label><input type="number" id="pf-bps" placeholder="e.g. 130" min="60" max="250"></div>
+                <div class="form-field"><label>BP Diastolic (mmHg)</label><input type="number" id="pf-bpd" placeholder="e.g. 85" min="40" max="160"></div>
+                <div class="form-field"><label>Cholesterol (mg/dL)</label><input type="number" id="pf-chol" placeholder="e.g. 200" min="50" max="500"></div>
+                <div class="form-field"><label>Height (cm)</label><input type="number" id="pf-height" placeholder="e.g. 168" min="50" max="250"></div>
+                <div class="form-field"><label>Weight (kg)</label><input type="number" id="pf-weight" placeholder="e.g. 72" min="10" max="300"></div>
+                <div class="form-field"><label>Smoking Status</label><select id="pf-smoke"><option value="">Select</option><option value="non">Non-smoker</option><option value="ex">Ex-smoker</option><option value="yes">Smoker</option></select></div>
+            </div>
+            <div class="form-section-title"><i class="fa-solid fa-capsules"></i> Current Medications</div>
+            <div class="form-grid single">
+                <div class="form-field"><label>Medications (comma-separated)</label><input type="text" id="pf-meds" placeholder="e.g. Metformin 500mg, Insulin, Amlodipine"></div>
+            </div>
+            <div class="form-section-title"><i class="fa-solid fa-eye"></i> Eye-Specific</div>
+            <div class="form-grid">
+                <div class="form-field"><label>Previous DR Diagnosis</label><select id="pf-dr"><option value="none">None / No DR</option><option value="mild">Mild NPDR</option><option value="moderate">Moderate NPDR</option><option value="severe">Severe NPDR</option><option value="pdr">Proliferative DR (PDR)</option></select></div>
+                <div class="form-field"><label>Last Eye Screening Date</label><input type="date" id="pf-screen-date"></div>
+            </div>
+            <div class="form-section-title"><i class="fa-solid fa-eye-low-vision"></i> Vision Complaints</div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="vc-blur"> Blurry Vision</label>
+                <label><input type="checkbox" id="vc-floaters"> Floaters</label>
+                <label><input type="checkbox" id="vc-dark"> Dark Spots</label>
+                <label><input type="checkbox" id="vc-flash"> Flashes of Light</label>
+                <label><input type="checkbox" id="vc-none"> None</label>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeProfileModal()"><i class="fa-solid fa-xmark" style="margin-right:0.4rem"></i>Cancel</button>
+                <button class="btn-save" onclick="saveProfile()"><i class="fa-solid fa-floppy-disk" style="margin-right:0.4rem"></i>Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compare Modal -->
+    <div class="compare-modal" id="compare-modal">
+        <div class="compare-box">
+            <h3><i class="fa-solid fa-code-compare" style="color:var(--primary);margin-right:0.4rem"></i>Scan Comparison</h3>
+            <div class="compare-grid">
+                <div class="compare-item"><img id="cmp-img-a" src="" alt="Scan A"><div class="c-label" id="cmp-label-a">--</div><div class="c-sub" id="cmp-sub-a">--</div></div>
+                <div class="compare-item"><img id="cmp-img-b" src="" alt="Scan B"><div class="c-label" id="cmp-label-b">--</div><div class="c-sub" id="cmp-sub-b">--</div></div>
+            </div>
+            <button class="btn-close-compare" onclick="document.getElementById('compare-modal').classList.remove('open')">Close</button>
+        </div>
+    </div>
+
+    <!-- Floating Profile Button -->
+    <button class="float-profile-btn" onclick="openProfileModal()"><i class="fa-solid fa-user-pen"></i> My Profile</button>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3><i class="fa-solid fa-eye"></i> Tele-Ophthalmology Screening Assistant</h3>
+                <p data-i18n="footer_about">Tele-Ophthalmology Screening Assistant is an advanced AI system built for
+                    rural Primary Health Centers. By converting everyday smartphones into clinical diagnostic tools, we
+                    bring world-class eye care to everyone.</p>
+            </div>
+            <div class="footer-links" style="grid-column: span 2;">
+                <h4 data-i18n="footer_links">Quick Links</h4>
+                <ul>
+                    <li><a href="#" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#instructions" data-i18n="nav_instructions">How to Use Lens</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer">&copy; 2026 Tele-Ophthalmology Screening Assistant. Transforming Diabetic Retinopathy
+                Care in India.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            "en": {
+                "nav_home":"Home","nav_instructions":"How to Use Lens","nav_dashboard":"Patient Dashboard","nav_history":"History","tab_history":"Scan History",
+                "hero_title":"Tele-Ophthalmology Screening Assistant","hero_subtitle":"AI-powered Diabetic Retinopathy screening. Upload a fundus image or capture one via smartphone macro lens for a clinical-grade assessment instantly.",
+                "upload_btn":"Upload Photo","camera_btn":"Open Camera","analyze_btn":"Analyze Scan",
+                "result_header":"Diagnosis Result","result_desc":"Based on our Vision Transformer (ViT) architecture trained on diverse clinical datasets.",
+                "heatmap_title":"AI Attention Heatmap","confidence":"AI Confidence Score","new_analysis":"New Analysis",
+                "inst_title":"How to Capture a Retinal Scan",
+                "step1_title":"Attach the Macro Lens","step1_desc":"Clip the 20D or smartphone-specific macro lens securely over your phone's primary rear camera module.",
+                "step2_title":"Position the Patient","step2_desc":"Turn on the smartphone flashlight. Hold the camera exactly 2 to 3 centimeters away from the patient's dilated pupil.",
+                "step3_title":"Capture the Fundus","step3_desc":"Click 'Open Camera'. Adjust the distance until the optic disc and macula come into sharp focus, then snap the photo.",
+                "footer_about":"Tele-Ophthalmology Screening Assistant is an advanced AI system built for rural Primary Health Centers. By converting everyday smartphones into clinical diagnostic tools, we bring world-class eye care to everyone.",
+                "footer_links":"Quick Links","footer":"© 2026 Tele-Ophthalmology Screening Assistant. Transforming Diabetic Retinopathy Care in India.",
+                "err_nofile":"No file selected","err_server":"Error analyzing image. Ensure the backend is running.","err_camera":"Camera access denied or unavailable on this device.",
+                "stage_0":"No DR","stage_1":"Mild DR","stage_2":"Moderate DR","stage_3":"Severe DR","stage_4":"Proliferative DR",
+                "action_0":"Routine Annual Screening","action_1":"Follow-up in 6-12 months","action_2":"Ophthalmologist Referral Recommended","action_3":"Urgent Referral Required","action_4":"Immediate Treatment Required",
+                "dashboard_title":"Clinical Performance Dashboard","accuracy":"Accuracy","precision":"Precision","recall":"Recall",
+                "cm_title":"Confusion Matrix (Validation Set)","cm_desc":"Rows: Actual Class | Columns: Predicted Class (0-4 Severity Stages)",
+                "health_score":"Health Score","daily_streak":"Daily Streak","risk_6m":"6-Month DR Risk",
+                "medical_params":"Medical Parameters","ai_suggestions":"AI Suggestions",
+                "sugar_trend":"Fasting Sugar Trend (Last 7 Days)","todays_log":"Today's Log",
+                "risk_low":"Low","risk_moderate":"Moderate","risk_high":"High","risk_critical":"Critical",
+                "fasting_lbl":"Fasting Sugar (mg/dL)","postmeal_lbl":"Post-Meal Sugar (mg/dL)",
+                "meds_lbl":"Medications Taken Today?","yes_taken":"Yes, taken","not_yet":"Not yet",
+                "diet_lbl":"Diet Today","diet_healthy":"Healthy","diet_moderate":"Moderate","diet_unhealthy":"Unhealthy",
+                "activity_lbl":"Physical Activity (minutes)","save_log_btn":"Save Today's Log",
+                "already_logged":"✅ Today's data logged! Come back tomorrow.",
+                "history_title":"Scan History Timeline","history_sub":"All your AI retinal scan results, stored securely in the database.",
+                "history_empty":"No scan history yet. Run an analysis from the Home tab to begin.",
+                "confidence_label":"Confidence:","compare_btn":"Compare",
+                "streak_days":"days","streak_start":"Start logging daily to build your streak!",
+                "streak_keep":"Keep going! {n} more days for a bonus","streak_fire":"Amazing streak! You're on fire! 🔥","streak_master":"Incredible! 30+ day master! 🏆",
+                "best_streak":"Best streak:","health_good":"🟢 Good Health","health_warn":"🟡 Needs Attention","health_risk":"🔴 High Risk",
+                "risk_label_low":"🟢 Low Risk","risk_label_mod":"🟡 Moderate Risk","risk_label_high":"🟠 High Risk","risk_label_crit":"🔴 Critical Risk",
+                "smoke_non":"Non-smoker","smoke_ex":"Ex-smoker","smoke_yes":"Smoker",
+                "sugg_setup":"Set up your patient profile to receive personalised AI suggestions.","sugg_all_ok":"🎉 All your parameters look great! Keep maintaining your healthy lifestyle.",
+                "report_date":"Date","report_stage":"Stage","report_confidence":"Confidence"
+            },
+            "te": {
+                "nav_home":"హోమ్","nav_instructions":"లెన్స్ ఎలా వాడాలి","nav_dashboard":"రోగి డాష్\u200cబోర్డ్","nav_history":"చరిత్ర","tab_history":"స్కాన్ చరిత్ర",
+                "hero_title":"టెలి-ఆప్తాల్మాలజీ స్క్రీనింగ్ అసిస్టెంట్","hero_subtitle":"కృత్రిమ మేధస్సు (AI) ద్వారా డయాబెటిక్ రెటినోపతీ స్క్రీనింగ్. గ్యాలరీ నుండి అప్\u200cలోడ్ చేయండి లేదా కెమెరాతో ఫోటో తీయండి.",
+                "upload_btn":"గ్యాలరీ నుండి అప్\u200cలోడ్","camera_btn":"లైవ్ కెమెరా తెరవండి","analyze_btn":"స్కాన్ విశ్లేషించండి",
+                "result_header":"రోగ నిర్ధారణ ఫలితం","result_desc":"వివిధ క్లినికల్ డేటాసెట్లపై శిక్షణ పొందిన మా విజన్ ట్రాన్స్\u200cఫార్మర్ (ViT) ఆధారంగా.",
+                "heatmap_title":"AI అటెన్షన్ హీట్\u200cమ్యాప్","confidence":"AI విశ్వాస స్కోర్","new_analysis":"కొత్త విశ్లేషణ",
+                "inst_title":"స్మార్ట్\u200cఫోన్\u200cతో రెటీనా స్కాన్ ఎలా తీయాలి",
+                "step1_title":"మాక్రో లెన్స్\u200cను అమర్చండి","step1_desc":"మీ స్మార్ట్\u200cఫోన్ వెనుక కెమెరా మీద 20D లేదా మాక్రో లెన్స్\u200cను క్లిప్ చేయండి.",
+                "step2_title":"రోగిని సిద్ధం చేయండి","step2_desc":"స్మార్ట్\u200cఫోన్ ఫ్లాష్\u200cలైట్ ఆన్ చేసి, కెమెరాను కంటికి 2-3 సెంటీమీటర్ల దూరంలో ఉంచండి.",
+                "step3_title":"ఫోటో తీయండి","step3_desc":"కెమెరా తెరచి కంటి నరాలు స్పష్టంగా కనిపించే వరకు దూరాన్ని సర్దుబాటు చేసి చిత్రం తీయండి.",
+                "footer_about":"టెలి-ఆప్తాల్మాలజీ స్క్రీనింగ్ అసిస్టెంట్ అనేది గ్రామీణ ఆరోగ్య కేంద్రాల కోసం నిర్మించబడిన అధునాతన AI వ్యవస్థ.",
+                "footer_links":"ముఖ్యమైన లింకులు","footer":"© 2026 టెలి-ఆప్తాల్మాలజీ స్క్రీనింగ్ అసిస్టెంట్.",
+                "err_nofile":"ఫైల్ ఎంచుకోబడలేదు","err_server":"సర్వర్ లోపం. బ్యాకెండ్ నడుస్తుందని నిర్ధారించుకోండి.","err_camera":"కెమెరా యాక్సెస్ నిరాకరించబడింది.",
+                "stage_0":"సాధారణం (No DR)","stage_1":"తేలికపాటి (Mild DR)","stage_2":"మధ్యస్థం (Moderate DR)","stage_3":"తీవ్రమైన (Severe DR)","stage_4":"చాలా తీవ్రమైన (Proliferative DR)",
+                "action_0":"వార్షిక తనిఖీ సరిపోతుంది","action_1":"6-12 నెలల్లో తిరిగి తనిఖీ","action_2":"కంటి వైద్యుడిని సంప్రదించండి","action_3":"తక్షణ వైద్య చికిత్స అవసరం","action_4":"వెంటనే ఆసుపత్రికి వెళ్లండి",
+                "dashboard_title":"క్లినికల్ పెర్ఫార్మెన్స్ డాష్\u200cబోర్డ్","accuracy":"ఖచ్చితత్వం","precision":"ప్రిసిషన్","recall":"రీకాల్",
+                "cm_title":"కన్ఫ్యూజన్ మ్యాట్రిక్స్ (వాలిడేషన్ సెట్)","cm_desc":"వరుసలు: అసలు తరగతి | నిలువు వరుసలు: అంచనా వేసిన తరగతి",
+                "health_score":"ఆరోగ్య స్కోర్","daily_streak":"రోజువారీ స్ట్రీక్","risk_6m":"6-నెలల DR రిస్క్",
+                "medical_params":"వైద్య పారామీటర్లు","ai_suggestions":"AI సూచనలు",
+                "sugar_trend":"ఫాస్టింగ్ షుగర్ ట్రెండ్ (గత 7 రోజులు)","todays_log":"నేటి నమోదు",
+                "risk_low":"తక్కువ","risk_moderate":"మధ్యస్థం","risk_high":"అధికం","risk_critical":"ప్రమాదకరం",
+                "fasting_lbl":"ఫాస్టింగ్ షుగర్ (mg/dL)","postmeal_lbl":"భోజనం తర్వాత షుగర్ (mg/dL)",
+                "meds_lbl":"నేడు మందులు తీసుకున్నారా?","yes_taken":"అవును, తీసుకున్నాను","not_yet":"ఇంకా లేదు",
+                "diet_lbl":"నేటి ఆహారం","diet_healthy":"ఆరోగ్యకరం","diet_moderate":"మధ్యస్థం","diet_unhealthy":"అనారోగ్యకరం",
+                "activity_lbl":"శారీరక వ్యాయామం (నిమిషాలు)","save_log_btn":"నేటి నమోదు సేవ్ చేయండి",
+                "already_logged":"✅ నేటి డేటా నమోదు అయింది! రేపు మళ్ళీ రండి.",
+                "history_title":"స్కాన్ చరిత్ర టైమ్\u200cలైన్","history_sub":"మీ AI రెటీనా స్కాన్ ఫలితాలు డేటాబేస్\u200cలో సురక్షితంగా నిల్వ చేయబడ్డాయి.",
+                "history_empty":"ఇంకా స్కాన్ చరిత్ర లేదు. హోమ్ ట్యాబ్ నుండి విశ్లేషణ చేయండి.",
+                "confidence_label":"విశ్వాసం:","compare_btn":"పోల్చండి",
+                "streak_days":"రోజులు","streak_start":"రోజువారీ నమోదు ప్రారంభించండి!",
+                "streak_keep":"కొనసాగించండి! {n} రోజులు మరిన్ని బోనస్\u200cకు","streak_fire":"అద్భుతమైన స్ట్రీక్! 🔥","streak_master":"అపూర్వం! 30+ రోజుల మాస్టర్! 🏆",
+                "best_streak":"అత్యుత్తమ స్ట్రీక్:","health_good":"🟢 మంచి ఆరోగ్యం","health_warn":"🟡 శ్రద్ధ అవసరం","health_risk":"🔴 అధిక రిస్క్",
+                "risk_label_low":"🟢 తక్కువ రిస్క్","risk_label_mod":"🟡 మధ్యస్థ రిస్క్","risk_label_high":"🟠 అధిక రిస్క్","risk_label_crit":"🔴 ప్రమాదకర రిస్క్",
+                "smoke_non":"పొగాటపాయని","smoke_ex":"మాజీ ధూమపాయి","smoke_yes":"ధూమపాయి",
+                "sugg_setup":"వ్యక్తిగతీకరించిన AI సూచనలు పొందడానికి మీ రోగి ప్రొఫైల్ సెటప్ చేయండి.","sugg_all_ok":"🎉 మీ అన్ని పారామీటర్లు బాగున్నాయి! ఆరోగ్యకరమైన జీవనశైలిని కొనసాగించండి.",
+                "report_date":"తేదీ","report_stage":"దశ","report_confidence":"విశ్వాసం"
+            },
+            "hi": {
+                "nav_home":"होम","nav_instructions":"लेंस का उपयोग कैसे करें","nav_dashboard":"मरीज़ डैशबोर्ड","nav_history":"इतिहास","tab_history":"स्कैन इतिहास",
+                "hero_title":"टेली-ऑप्थल्मोलॉजी स्क्रीनिंग सहायक","hero_subtitle":"AI द्वारा डायबिटिक रेटिनोपैथी स्क्रीनिंग। गैलरी से चित्र अपलोड करें या सीधे तस्वीर लें।",
+                "upload_btn":"तस्वीर अपलोड करें","camera_btn":"लाइव कैमरा खोलें","analyze_btn":"स्कैन का विश्लेषण करें",
+                "result_header":"निदान परिणाम","result_desc":"विविध नैदानिक डेटासेट पर प्रशिक्षित हमारे विज़न ट्रांसफार्मर (ViT) पर आधारित।",
+                "heatmap_title":"AI अटेंशन हीटमैप","confidence":"AI कॉन्फिडेंस स्कोर","new_analysis":"नया विश्लेषण",
+                "inst_title":"स्मार्टफोन से रेटिनल स्कैन कैसे लें",
+                "step1_title":"मैक्रो लेंस संलग्न करें","step1_desc":"अपने फोन के रियर कैमरे पर 20D या स्मार्टफोन मैक्रो लेंस क्लिप करें।",
+                "step2_title":"रोगी को तैयार करें","step2_desc":"स्मार्टफोन टॉर्च चालू करें। कैमरे को 2-3 सेंटीमीटर दूर रखें।",
+                "step3_title":"तस्वीर लें","step3_desc":"'कैमरा खोलें' पर क्लिक करें। स्पष्ट दिखाई देने पर तस्वीर लें।",
+                "footer_about":"टेली-ऑप्थल्मोलॉजी स्क्रीनिंग सहायक ग्रामीण स्वास्थ्य केंद्रों के लिए बनाया गया एक उन्नत AI सिस्टम है।",
+                "footer_links":"महत्वपूर्ण लिंक","footer":"© 2026 टेली-ऑप्थल्मोलॉजी स्क्रीनिंग सहायक।",
+                "err_nofile":"कोई फ़ाइल नहीं चुनी गई","err_server":"सर्वर त्रुटि। सुनिश्चित करें कि बैकएंड चल रहा है।","err_camera":"कैमरा एक्सेस अस्वीकृत है।",
+                "stage_0":"सामान्य (No DR)","stage_1":"हल्का (Mild DR)","stage_2":"मध्यम (Moderate DR)","stage_3":"गंभीर (Severe DR)","stage_4":"अत्यधिक गंभीर (Proliferative DR)",
+                "action_0":"नियमित वार्षिक जांच पर्याप्त है","action_1":"6-12 महीने में फॉलो-अप","action_2":"नेत्र रोग विशेषज्ञ से संपर्क करें","action_3":"तत्काल रेफरल आवश्यक","action_4":"तुरंत इलाज की आवश्यकता है",
+                "dashboard_title":"नैदानिक प्रदर्शन डैशबोर्ड","accuracy":"सटीकता","precision":"शुद्धता","recall":"रिकॉल",
+                "cm_title":"कन्फ्यूजन मैट्रिक्स (सत्यापन सेट)","cm_desc":"पंक्तियाँ: वास्तविक वर्ग | कॉलम: अनुमानित वर्ग",
+                "health_score":"स्वास्थ्य स्कोर","daily_streak":"दैनिक स्ट्रीक","risk_6m":"6-माह DR जोखिम",
+                "medical_params":"चिकित्सा पैरामीटर","ai_suggestions":"AI सुझाव",
+                "sugar_trend":"फास्टिंग शुगर ट्रेंड (पिछले 7 दिन)","todays_log":"आज का लॉग",
+                "risk_low":"कम","risk_moderate":"मध्यम","risk_high":"अधिक","risk_critical":"गंभीर",
+                "fasting_lbl":"फास्टिंग शुगर (mg/dL)","postmeal_lbl":"भोजन के बाद शुगर (mg/dL)",
+                "meds_lbl":"क्या आज दवाएं ली?","yes_taken":"हाँ, ली","not_yet":"अभी नहीं",
+                "diet_lbl":"आज का आहार","diet_healthy":"स्वस्थ","diet_moderate":"सामान्य","diet_unhealthy":"अस्वस्थ",
+                "activity_lbl":"शारीरिक गतिविधि (मिनट)","save_log_btn":"आज का लॉग सहेजें",
+                "already_logged":"✅ आज का डेटा लॉग हो गया! कल फिर आएं।",
+                "history_title":"स्कैन इतिहास टाइमलाइन","history_sub":"आपके सभी AI रेटिनल स्कैन परिणाम डेटाबेस में सुरक्षित हैं।",
+                "history_empty":"अभी तक कोई स्कैन इतिहास नहीं है। होम टैब से विश्लेषण करें।",
+                "confidence_label":"विश्वास:","compare_btn":"तुलना करें",
+                "streak_days":"दिन","streak_start":"स्ट्रीक बनाने के लिए रोज़ लॉग करें!",
+                "streak_keep":"जारी रखें! {n} और दिन बोनस के लिए","streak_fire":"अद्भुत स्ट्रीक! 🔥","streak_master":"अविश्वसनीय! 30+ दिन मास्टर! 🏆",
+                "best_streak":"सर्वश्रेष्ठ स्ट्रीक:","health_good":"🟢 अच्छा स्वास्थ्य","health_warn":"🟡 ध्यान आवश्यक","health_risk":"🔴 उच्च जोखिम",
+                "risk_label_low":"🟢 कम जोखिम","risk_label_mod":"🟡 मध्यम जोखिम","risk_label_high":"🟠 उच्च जोखिम","risk_label_crit":"🔴 गंभीर जोखिम",
+                "smoke_non":"धूम्रपान नहीं करते","smoke_ex":"पूर्व धूम्रपायी","smoke_yes":"धूम्रपायी",
+                "sugg_setup":"व्यक्तिगत AI सुझाव पाने के लिए अपना रोगी प्रोफ़ाइल सेट करें।","sugg_all_ok":"🎉 आपके सभी पैरामीटर बढ़िया हैं! स्वस्थ जीवनशैली बनाए रखें।",
+                "report_date":"तारीख","report_stage":"चरण","report_confidence":"विश्वास"
+            }
+        };
+
+        let currentLang = "en";
+        let localStream = null;
+
+        function changeLanguage() {
+            currentLang = document.getElementById("lang-switch").value;
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[currentLang] && translations[currentLang][key])
+                    el.innerText = translations[currentLang][key];
+            });
+            updateResultTextLanguage();
+            // Re-render empty history message
+            const hEmpty = document.querySelector('.empty-history');
+            if (hEmpty) hEmpty.textContent = translations[currentLang]['history_empty'] || hEmpty.textContent;
+            // Re-render dashboard dynamic sections (streak, suggestions, health score)
+            if (typeof refreshDashboard === 'function') refreshDashboard();
+        }
+
+        // --- UI LOGIC ---
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const actionGrid = document.getElementById('action-grid');
+        const cameraContainer = document.getElementById('camera-container');
+        const videoStream = document.getElementById('camera-stream');
+
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const resultsCard = document.getElementById('results-card');
+        const errorMessage = document.getElementById('error-message');
+        const severityParams = { stageRaw: "", alertRaw: "" };
+
+        // --- LIVE CAMERA LOGIC ---
+        async function openLiveCamera() {
+            errorMessage.style.display = 'none';
+            try {
+                // Request back camera (environment) stream
+                localStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                videoStream.srcObject = localStream;
+                actionGrid.style.display = 'none';
+                cameraContainer.style.display = 'block';
+            } catch (err) {
+                console.error("Camera error:", err);
+                showError(translations[currentLang]["err_camera"]);
+            }
+        }
+
+        function closeCamera() {
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+                localStream = null;
+            }
+            cameraContainer.style.display = 'none';
+            actionGrid.style.display = 'grid';
+        }
+
+        function snapPhoto() {
+            // Create a fake canvas to draw the video frame
+            const canvas = document.createElement("canvas");
+            canvas.width = videoStream.videoWidth;
+            canvas.height = videoStream.videoHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(videoStream, 0, 0, canvas.width, canvas.height);
+
+            // Stop the camera
+            closeCamera();
+
+            // Convert canvas to a File Blob
+            canvas.toBlob(async blob => {
+                const capturedFile = new File([blob], "camera_capture.jpg", { type: "image/jpeg" });
+                
+                // --- OPTIMIZATION: Resize image client-side to 224x224 ---
+                const optimizedBlob = await resizeImage(capturedFile, 224, 224);
+                const optimizedFile = new File([optimizedBlob], "optimized_capture.jpg", { type: "image/jpeg" });
+
+                // Inject the file into our file input logic
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(optimizedFile);
+                fileInput.files = dataTransfer.files;
+
+                showPreview(optimizedFile);
+            }, "image/jpeg", 0.90);
+        }
+
+        // Handle File Input from Browse
+        fileInput.addEventListener('change', function () {
+            if (this.files && this.files[0]) showPreview(this.files[0]);
+        });
+
+        // Drag and drop setup for the Upload box
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => { e.preventDefault(); e.stopPropagation(); }, false);
+        });
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('dragover'), false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
+        });
+
+        dropZone.addEventListener('drop', e => {
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                fileInput.files = e.dataTransfer.files;
+                showPreview(file);
+            }
+        });
+
+        function showPreview(file) {
+            errorMessage.style.display = 'none';
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                actionGrid.style.display = 'none';
+                previewContainer.style.display = 'block';
+                analyzeBtn.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage() {
+            fileInput.value = '';
+            imagePreview.src = '';
+            actionGrid.style.display = 'grid';
+            previewContainer.style.display = 'none';
+            analyzeBtn.style.display = 'none';
+            resultsCard.style.display = 'none';
+            errorMessage.style.display = 'none';
+        }
+
+        function resetAnalysis() {
+            removeImage();
+            document.getElementById('confidence-fill').style.width = '0%';
+        }
+
+        async function analyzeImage() {
+            const file = fileInput.files[0];
+            if (!file) {
+                showError(translations[currentLang]["err_nofile"]);
+                return;
+            }
+
+            const btnText = document.getElementById('btn-text');
+            const spinner = document.getElementById('btn-spinner');
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+            analyzeBtn.disabled = true;
+            resultsCard.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/predict", { method: "POST", body: formData });
+
+                if (!response.ok) {
+                    const errorJson = await response.json().catch(() => null);
+                    throw new Error(errorJson?.error || translations[currentLang]["err_server"]);
+                }
+
+                const data = await response.json();
+                processResults(data);
+
+            } catch (error) {
+                showError(error.message.includes("Failed to fetch") ? translations[currentLang]["err_server"] : error.message);
+            } finally {
+                btnText.style.display = 'block';
+                spinner.style.display = 'none';
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        function showError(msg) {
+            errorMessage.innerText = msg;
+            errorMessage.style.display = 'block';
+        }
+
+        function processResults(data) {
+            const prediction = data.prediction || data.severity || "";
+            let stageCode = "stage_0";
+            let actionCode = "action_0";
+            let cssClass = "sev-nodr";
+
+            if (prediction.toLowerCase().includes("no dr")) {
+                // Defaults
+            } else if (prediction.toLowerCase().includes("mild")) {
+                stageCode = "stage_1"; actionCode = "action_1"; cssClass = "sev-mild";
+            } else if (prediction.toLowerCase().includes("moderate")) {
+                stageCode = "stage_2"; actionCode = "action_2"; cssClass = "sev-moderate";
+            } else if (prediction.toLowerCase().includes("severe")) {
+                stageCode = "stage_3"; actionCode = "action_3"; cssClass = "sev-severe";
+            } else {
+                stageCode = "stage_4"; actionCode = "action_4"; cssClass = "sev-proliferative";
+            }
+
+            severityParams.stageRaw = stageCode;
+            severityParams.alertRaw = actionCode;
+
+            const badgeEl = document.getElementById('severity-badge');
+            badgeEl.className = 'severity-badge ' + cssClass;
+
+            updateResultTextLanguage();
+
+            document.getElementById('confidence-value').innerText = data.confidence;
+
+            // Handle Heatmap if returned by server
+            if (data.heatmap) {
+                document.getElementById('heatmap-image').src = data.heatmap;
+                document.getElementById('heatmap-container').style.display = "block";
+            } else {
+                document.getElementById('heatmap-container').style.display = "none";
+            }
+
+            resultsCard.style.display = 'block';
+
+            setTimeout(() => {
+                const confFillEl = document.getElementById('confidence-fill');
+                const confNum = parseFloat(data.confidence);
+                confFillEl.style.width = (confNum || 100) + '%';
+            }, 100);
+
+            // Save result to history timeline
+            if(typeof saveToHistory === 'function') { saveToHistory(data); renderTimeline(); }
+        }
+
+        function updateResultTextLanguage() {
+            if (!severityParams.stageRaw) return;
+            document.getElementById('result-severity').innerText = translations[currentLang][severityParams.stageRaw];
+            document.getElementById('severity-badge').innerText = translations[currentLang][severityParams.alertRaw];
+        }
+
+        // --- OPTIMIZATION: Resize Helper ---
+        function resizeImage(file, maxWidth, maxHeight) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = maxWidth;
+                        canvas.height = maxHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
+                        canvas.toBlob((blob) => resolve(blob), 'image/jpeg', 0.90);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+
+
+
+        // ==================== TAB SYSTEM ====================
+        function switchTab(name) {
+            ['home','dashboard','history'].forEach(t => {
+                document.getElementById('tab-content-'+t).classList.toggle('active', t===name);
+                document.getElementById('tab-'+t).classList.toggle('active', t===name);
+            });
+            if(name==='dashboard') refreshDashboard();
+            if(name==='history') renderTimeline();
+        }
+
+        // ==================== API + CACHE DATA LAYER ====================
+        const API = 'http://127.0.0.1:5000';
+        const LS_PROFILE = 'rg_patient_profile';
+        const LS_LOGS    = 'rg_daily_logs';
+        const LS_STREAK  = 'rg_streak';
+        const LS_HISTORY = 'rg_scan_history';
+
+        async function apiGet(path) {
+            try { const r=await fetch(API+path); return r.ok ? await r.json() : null; }
+            catch(e){ return null; }
+        }
+        async function apiPost(path, body) {
+            try { const r=await fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); return r.ok; }
+            catch(e){ return false; }
+        }
+
+        // Sync helpers (cache reads)
+        function getProfile()    { try{return JSON.parse(localStorage.getItem(LS_PROFILE))||{};}catch(e){return{};} }
+        function getLogs()       { try{return JSON.parse(localStorage.getItem(LS_LOGS))||[];}catch(e){return[];} }
+        function getStreak()     { try{return JSON.parse(localStorage.getItem(LS_STREAK))||{current:0,best:0,lastDate:''};} catch(e){return{current:0,best:0,lastDate:''};} }
+        function getHistory()    { try{return JSON.parse(localStorage.getItem(LS_HISTORY))||[];}catch(e){return[];} }
+
+        // Async API loaders (writes to cache after fetch)
+        async function loadProfileFromAPI() {
+            const d = await apiGet('/patient/profile');
+            if(d && d.name) {
+                d.dr = d.dr_stage || 'none';
+                d.screenDate = d.screen_date || '';
+                try { d.vision = JSON.parse(d.vision||'[]'); } catch(e){ d.vision=[]; }
+                localStorage.setItem(LS_PROFILE, JSON.stringify(d));
+                return d;
+            }
+            return getProfile();
+        }
+        async function loadLogsFromAPI() {
+            const data = await apiGet('/patient/daily-logs');
+            if(data) {
+                const mapped = data.map(l=>({date:l.log_date,fast:l.fast,pp:l.pp,water:l.water,activity:l.activity,meds:!!l.meds_taken,diet:l.diet}));
+                localStorage.setItem(LS_LOGS, JSON.stringify(mapped));
+                return mapped;
+            }
+            return getLogs();
+        }
+        async function loadHistoryFromAPI() {
+            const data = await apiGet('/patient/scan-history');
+            if(data) {
+                const mapped = data.map(r=>({date:r.scan_date?new Date(r.scan_date).toLocaleString():'--',stage:r.stage,confidence:r.confidence,heatmap:r.heatmap}));
+                localStorage.setItem(LS_HISTORY, JSON.stringify(mapped));
+                return mapped;
+            }
+            return getHistory();
+        }
+
+        // ==================== APP INIT ====================
+        async function initApp() {
+            const p = await loadProfileFromAPI();
+            await loadLogsFromAPI();
+            if(!p.name) {
+                setTimeout(()=>openProfileModal(), 800);
+            } else {
+                refreshDashboard();
+            }
+            renderTimeline();
+        }
+
+        // ==================== PROFILE MODAL ====================
+        async function openProfileModal() {
+            const p = await loadProfileFromAPI();
+            const fields = {
+                'pf-name':p.name||'', 'pf-age':p.age||'', 'pf-gender':p.gender||'',
+                'pf-dur':p.dur||'', 'pf-hba1c':p.hba1c||'', 'pf-fast':p.fast||'',
+                'pf-pp':p.pp||'', 'pf-bps':p.bps||'', 'pf-bpd':p.bpd||'',
+                'pf-chol':p.chol||'', 'pf-height':p.height||'', 'pf-weight':p.weight||'',
+                'pf-smoke':p.smoke||'', 'pf-meds':p.meds||'', 'pf-dr':p.dr||'none',
+                'pf-screen-date':p.screenDate||''
+            };
+            Object.entries(fields).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.value=val; });
+            ['blur','floaters','dark','flash','none'].forEach(k => {
+                const cb = document.getElementById('vc-'+k);
+                if(cb) cb.checked = (p.vision||[]).includes(k);
+            });
+            document.getElementById('profile-modal').classList.add('open');
+        }
+
+        function closeProfileModal() { document.getElementById('profile-modal').classList.remove('open'); }
+
+        function saveProfile() {
+            const vision = ['blur','floaters','dark','flash','none'].filter(k => document.getElementById('vc-'+k)?.checked);
+            const p = {
+                name: document.getElementById('pf-name').value.trim(),
+                age: +document.getElementById('pf-age').value,
+                gender: document.getElementById('pf-gender').value,
+                dur: +document.getElementById('pf-dur').value,
+                hba1c: parseFloat(document.getElementById('pf-hba1c').value),
+                fast: +document.getElementById('pf-fast').value,
+                pp: +document.getElementById('pf-pp').value,
+                bps: +document.getElementById('pf-bps').value,
+                bpd: +document.getElementById('pf-bpd').value,
+                chol: +document.getElementById('pf-chol').value,
+                height: +document.getElementById('pf-height').value,
+                weight: +document.getElementById('pf-weight').value,
+                smoke: document.getElementById('pf-smoke').value,
+                meds: document.getElementById('pf-meds').value.trim(),
+                dr: document.getElementById('pf-dr').value,
+                screenDate: document.getElementById('pf-screen-date').value,
+                vision
+            };
+            localStorage.setItem(LS_PROFILE, JSON.stringify(p));
+            apiPost('/patient/profile', p).then(ok => {
+                if(!ok) console.warn('Profile save: backend unavailable, using local cache.');
+            });
+            closeProfileModal();
+            refreshDashboard();
+        }
+
+        // ==================== HEALTH SCORE ENGINE ====================
+        function calcHealthScore(p, streak, logs) {
+            if (!p.hba1c) return null;
+            let score = 0;
+            // HbA1c (max 25)
+            const h = p.hba1c;
+            score += h<=5.7?25 : h<=6.4?17 : h<=7.5?9 : h<=9?4 : 0;
+            // Fasting sugar (max 20)
+            const f = p.fast;
+            score += f<=99?20 : f<=125?13 : f<=180?6 : f<=250?2 : 0;
+            // BP (max 15)
+            const bps = p.bps||0, bpd=p.bpd||0;
+            if(bps && bpd) score += (bps<=120&&bpd<=80)?15 : (bps<=139||bpd<=89)?10 : 0;
+            // BMI (max 15)
+            if(p.height&&p.weight){ const bmi=p.weight/((p.height/100)**2); score += (bmi>=18.5&&bmi<25)?15 : (bmi<30)?9 : 4; }
+            // Smoking (max 10)
+            score += p.smoke==='non'?10 : p.smoke==='ex'?5 : 0;
+            // Today meds bonus (+5)
+            const todayLog = logs.find(l => l.date===today());
+            if(todayLog?.meds) score += 5;
+            // Streak bonus (+10 if >=7 days)
+            if(streak.current>=7) score += 10;
+            return Math.min(100, score);
+        }
+
+        // ==================== RISK PREDICTION ENGINE ====================
+        function calcDRRisk(p, logs) {
+            if(!p.dr) return null;
+            const baseMap = {none:2, mild:8, moderate:20, severe:45, pdr:75};
+            let risk = baseMap[p.dr] || 2;
+            const h = p.hba1c||7;
+            if(h<7) risk*=0.7; else if(h<=9) risk*=1.2; else risk*=1.8;
+            const d = p.dur||0;
+            if(d<5) risk*=0.8; else if(d>10) risk*=1.3;
+            if(p.bps>=140||p.bpd>=90) risk*=1.2;
+            if(p.smoke==='yes') risk*=1.15;
+            // Last 3 daily fasting sugar entries
+            const last3 = logs.slice(-3).filter(l=>l.fast>200);
+            if(last3.length>=2) risk*=1.25;
+            return Math.min(99, Math.round(risk));
+        }
+
+        // ==================== BMI CALC ====================
+        function calcBMI(h,w){ if(!h||!w) return null; return (w/((h/100)**2)).toFixed(1); }
+
+        // ==================== TODAY ====================
+        function today() { return new Date().toISOString().slice(0,10); }
+
+        // ==================== REFRESH DASHBOARD ====================
+        async function refreshDashboard() {
+            const p = await loadProfileFromAPI();
+            const logs = await loadLogsFromAPI();
+            const streak = getStreak();
+            if(!p.name) return;
+
+            // Medical Params
+            function setChip(id, val, unit, lo, hi) {
+                const el = document.getElementById(id);
+                if(!el || !val) return;
+                el.textContent = val + (unit||'');
+                const parent = el.closest('.param-chip');
+                if(!parent) return;
+                parent.className = 'param-chip' + (val<lo?' good' : val>hi?' danger' : '');
+            }
+            document.getElementById('p-hba1c').textContent = p.hba1c ? p.hba1c+'%' : '--';
+            document.getElementById('p-hba1c').closest('.param-chip').className = 'param-chip' + (p.hba1c ? (p.hba1c<=7?' good':p.hba1c<=9?' warn':' danger') : '');
+            document.getElementById('p-fast').textContent = p.fast ? p.fast+' mg/dL' : '--';
+            document.getElementById('p-fast').closest('.param-chip').className = 'param-chip' + (p.fast ? (p.fast<=99?' good':p.fast<=125?' warn':' danger') : '');
+            document.getElementById('p-pp').textContent = p.pp ? p.pp+' mg/dL' : '--';
+            document.getElementById('p-pp').closest('.param-chip').className = 'param-chip' + (p.pp ? (p.pp<=139?' good':p.pp<=199?' warn':' danger') : '');
+            document.getElementById('p-bp').textContent = (p.bps&&p.bpd) ? p.bps+'/'+p.bpd : '--';
+            document.getElementById('p-bp').closest('.param-chip').className = 'param-chip' + ((p.bps&&p.bpd) ? (p.bps<=120?' good':p.bps<=139?' warn':' danger') : '');
+            document.getElementById('p-chol').textContent = p.chol ? p.chol+' mg/dL' : '--';
+            document.getElementById('p-chol').closest('.param-chip').className = 'param-chip' + (p.chol ? (p.chol<200?' good':p.chol<240?' warn':' danger') : '');
+            document.getElementById('p-dur').textContent = p.dur ? p.dur+' yrs' : '--';
+            document.getElementById('p-meds').textContent = p.meds || '--';
+            const smokeMap = {non: translations[currentLang]['smoke_non']||'Non-smoker', ex: translations[currentLang]['smoke_ex']||'Ex-smoker', yes: translations[currentLang]['smoke_yes']||'Smoker'};
+            document.getElementById('p-smoke').textContent = smokeMap[p.smoke] || '--';
+            const bmi = calcBMI(p.height, p.weight);
+            document.getElementById('p-bmi').textContent = bmi ? bmi+' kg/m²' : '--';
+            document.getElementById('p-bmi').closest('.param-chip').className = 'param-chip' + (bmi ? (bmi<25?' good':bmi<30?' warn':' danger') : '');
+
+            // Health Score
+            const score = calcHealthScore(p, streak, logs);
+            if(score!==null) {
+                document.getElementById('health-score-val').textContent = score;
+                const color = score>=70?'#22c55e':score>=50?'#f59e0b':'#ef4444';
+                const T = translations[currentLang];
+                const label = score>=70? (T['health_good']||'🟢 Good Health') : score>=50? (T['health_warn']||'🟡 Needs Attention') : (T['health_risk']||'🔴 High Risk');
+                document.getElementById('health-score-label').textContent = label;
+                document.getElementById('health-score-val').style.color = color;
+                const gaugeEl = document.getElementById('gauge-fill');
+                const totalLen = 220;
+                const offset = totalLen - (score/100)*totalLen;
+                gaugeEl.style.strokeDashoffset = offset;
+                gaugeEl.style.stroke = color;
+            }
+
+            // Streak
+            updateStreakDisplay();
+
+            // Risk
+            const risk = calcDRRisk(p, logs);
+            if(risk!==null) {
+                document.getElementById('risk-needle').style.left = Math.min(95, Math.max(3, risk)) + '%';
+                const T2 = translations[currentLang];
+                const rL0 = T2['risk_label_low']||'🟢 Low Risk'; const rL1 = T2['risk_label_mod']||'🟡 Moderate Risk'; const rL2 = T2['risk_label_high']||'🟠 High Risk'; const rL3 = T2['risk_label_crit']||'🔴 Critical Risk';
+                const riskLabel = risk<10?(rL0+' ('+risk+'%)'): risk<30?(rL1+' ('+risk+'%)'): risk<60?(rL2+' ('+risk+'%)'):(rL3+' ('+risk+'%)');
+                document.getElementById('risk-result').textContent = riskLabel;
+                if(risk>=30) document.getElementById('risk-result').style.color='#ef4444';
+                else if(risk>=10) document.getElementById('risk-result').style.color='#f59e0b';
+                else document.getElementById('risk-result').style.color='#22c55e';
+            }
+
+            // AI Suggestions
+            buildSuggestions(p, logs);
+
+            // Sparkline
+            drawSparkline(logs);
+
+            // Today's log
+            const todayLog = logs.find(l => l.date===today());
+            if(todayLog) {
+                document.getElementById('already-logged-msg').style.display='block';
+                document.getElementById('tracker-form').style.display='none';
+            }
+        }
+
+        function updateStreakDisplay() {
+            const s = getStreak();
+            const T = translations[currentLang];
+            const days = T['streak_days'] || 'days';
+            document.getElementById('streak-badge').textContent = '🔥 ' + s.current + ' ' + days;
+            document.getElementById('best-streak').textContent = s.best + ' ' + days;
+            const info = s.current === 0 ? (T['streak_start'] || 'Start logging daily!') :
+                         s.current < 7  ? (T['streak_keep'] || 'Keep going!').replace('{n}', 7 - s.current) :
+                         s.current < 30 ? (T['streak_fire'] || 'Amazing streak! 🔥') :
+                                          (T['streak_master'] || 'Incredible! 30+ day master! 🏆');
+            document.getElementById('streak-info').textContent = info;
+        }
+
+        // ==================== AI SUGGESTIONS ====================
+        function buildSuggestions(p, logs) {
+            const items = [];
+            const todayLog = logs.find(l=>l.date===today());
+            const addS = (type,icon,msg) => items.push({type,icon,msg});
+
+            if(p.hba1c>8) addS('danger','🚨',`HbA1c ${p.hba1c}% is high. Consult your endocrinologist and consider medication review.`);
+            else if(p.hba1c>7) addS('warn','⚠️',`HbA1c ${p.hba1c}% is above target. Tighten sugar control with diet & medication.`);
+            else if(p.hba1c && p.hba1c<=7) addS('good','✅',`HbA1c ${p.hba1c}% is well-controlled. Keep it up!`);
+            if(p.fast>200) addS('danger','🔴',`Fasting sugar ${p.fast} mg/dL is dangerously high. Please consult your doctor.`);
+            else if(p.fast>125) addS('warn','🍚',`Fasting sugar ${p.fast} mg/dL is elevated. Reduce refined carbs and increase fibre.`);
+            if(p.pp>200) addS('warn','🚶',`Post-meal sugar is high. A 15-minute walk after meals can reduce PP glucose by ~20%.`);
+            if(p.bps>=140||p.bpd>=90) addS('danger','💊',`Blood pressure ${p.bps}/${p.bpd} indicates hypertension, which accelerates DR. Monitor daily.`);
+            if(p.chol>=240) addS('warn','🫀',`Cholesterol ${p.chol} mg/dL is high. Eat more oats, nuts, and omega-3 rich fish.`);
+            if(p.smoke==='yes') addS('danger','🚭',`Smoking significantly increases DR progression risk. Seek cessation support.`);
+            if(todayLog && todayLog.water<6) addS('info','💧',`You drank only ${todayLog.water} glasses today. Aim for 8+ for kidney health.`);
+            if(todayLog && !todayLog.meds) addS('warn','💊',`⚠️ Medications not marked today! Consistent medication is critical.`);
+            if(p.dr==='moderate'||p.dr==='severe'||p.dr==='pdr') addS('danger','👁️',`Your DR stage (${p.dr}) requires regular ophthalmologist follow-up. Don't delay.`);
+
+            // Consistent high sugar warning
+            const last3High = logs.slice(-3).filter(l=>l.fast>200).length;
+            if(last3High>=2) addS('danger','📈',`Consistent high fasting sugar detected in last 3 logs. High risk of DR progression — see your doctor now.`);
+
+            if(items.length===0) addS('good','🎉','All your parameters look great! Keep maintaining your healthy lifestyle.');
+            const container = document.getElementById('suggestion-list');
+            container.innerHTML = items.map(s=>`<div class="suggestion-item ${s.type}"><span>${s.icon}</span><span>${s.msg}</span></div>`).join('');
+        }
+
+        // ==================== SPARKLINE ====================
+        function drawSparkline(logs) {
+            const svg = document.getElementById('sparkline-svg');
+            if(!svg) return;
+            const data = logs.slice(-7).map(l=>l.fast||0).filter(v=>v>0);
+            if(data.length<2){ svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" fill="#94a3b8" font-size="10">Log at least 2 days to see trend</text>'; return; }
+            const W=300, H=80, pad=10;
+            const mn=Math.min(...data)-20, mx=Math.max(...data)+20;
+            const sx = i => pad+(i/(data.length-1))*(W-2*pad);
+            const sy = v => H-pad-((v-mn)/(mx-mn||1))*(H-2*pad);
+            const pts = data.map((v,i)=>`${sx(i)},${sy(v)}`).join(' ');
+            const thresh = sy(126);
+            svg.innerHTML = `
+                <line x1="${pad}" y1="${thresh}" x2="${W-pad}" y2="${thresh}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+                <polyline points="${pts}" fill="none" stroke="url(#sl-grad)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                <defs><linearGradient id="sl-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs>
+                ${data.map((v,i)=>`<circle cx="${sx(i)}" cy="${sy(v)}" r="4" fill="${v>126?'#ef4444':'#22c55e'}" stroke="#fff" stroke-width="2"/><text x="${sx(i)}" y="${sy(v)-8}" text-anchor="middle" font-size="9" fill="#64748b" font-family="Outfit">${v}</text>`).join('')}`;
+        }
+
+        // ==================== DAILY TRACKER ====================
+        let trackerMeds = null, trackerDiet = null;
+        function setMed(val) {
+            trackerMeds = val;
+            document.getElementById('med-yes').className = val ? 'yes' : '';
+            document.getElementById('med-no').className  = val ? '' : 'no';
+        }
+        function setDiet(val) {
+            trackerDiet = val;
+            ['healthy','moderate','unhealthy'].forEach(d => {
+                const b = document.getElementById('diet-'+d);
+                b.className = 'diet-btn' + (d===val?' selected '+d:'');
+            });
+        }
+        async function submitDailyLog() {
+            const d = today();
+            const logs = await loadLogsFromAPI();
+            if(logs.find(l=>l.date===d)) { showTrackerAlert('warn','Already logged for today!'); return; }
+            const fast = +document.getElementById('t-fast').value;
+            const pp   = +document.getElementById('t-pp').value;
+            const water= +document.getElementById('t-water').value;
+            const act  = +document.getElementById('t-activity').value;
+            if(!fast) { showTrackerAlert('danger','Please enter fasting sugar.'); return; }
+
+            const entry = { date:d, fast, pp, water, activity:act, meds:trackerMeds||false, diet:trackerDiet||'moderate' };
+            // Save to backend (primary)
+            apiPost('/patient/daily-log', entry).then(ok => {
+                if(!ok) console.warn('Daily log: backend unavailable, using local cache.');
+            });
+            // Save to localStorage cache
+            const allLogs = getLogs();
+            allLogs.push(entry);
+            if(allLogs.length>30) allLogs.shift();
+            localStorage.setItem(LS_LOGS, JSON.stringify(allLogs));
+            updateStreak();
+            document.getElementById('already-logged-msg').style.display='block';
+            document.getElementById('tracker-form').style.display='none';
+
+            let alertMsg = '';
+            if(fast>200) alertMsg += '🔴 Fasting sugar critically high ('+fast+'mg/dL)! Hydrate, avoid sugar, call your doctor. ';
+            else if(fast>125) alertMsg += '🟡 Fasting sugar elevated. Cut carbs today. ';
+            if(pp>200) alertMsg += '⚡ Post-meal spike detected — 15-min walk recommended. ';
+            if(!trackerMeds) alertMsg += '💊 Reminder: take your medications! ';
+            if(water<6) alertMsg += '💧 Drink more water (you had only '+water+' glasses). ';
+            if(alertMsg) showTrackerAlert('warn', alertMsg);
+            else showTrackerAlert('good','✅ Great! All values look healthy today. Keep it up!');
+
+            refreshDashboard();
+        }
+        function showTrackerAlert(type, msg) {
+            const el = document.getElementById('tracker-alert');
+            el.textContent = msg;
+            el.className = 'alert-inline '+type;
+            el.style.display = 'block';
+        }
+
+        // ==================== STREAK ENGINE ====================
+        function updateStreak() {
+            const s = getStreak();
+            const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+            const yd = yesterday.toISOString().slice(0,10);
+            if(s.lastDate===yd || s.lastDate==='') { s.current++; }
+            else if(s.lastDate!==today()) { s.current=1; }
+            s.lastDate = today();
+            if(s.current>s.best) s.best=s.current;
+            localStorage.setItem(LS_STREAK, JSON.stringify(s));
+        }
+
+        // ==================== SCAN HISTORY ====================
+        function saveToHistory(data) {
+            const hist = getHistory();
+            const entry = {
+                date: new Date().toLocaleString(),
+                stage: data.prediction||data.severity||'Unknown',
+                confidence: data.confidence||'',
+                heatmap: data.heatmap||null
+            };
+            hist.unshift(entry);
+            if(hist.length>20) hist.pop();
+            localStorage.setItem(LS_HISTORY, JSON.stringify(hist));
+        }
+
+        async function renderTimeline() {
+            const hist = await loadHistoryFromAPI();
+            const container = document.getElementById('timeline-list');
+            if(!hist.length) {
+                container.innerHTML = '<div class="empty-history"><i class="fa-regular fa-clock"></i>No scan history yet. Run an analysis from the Home tab to begin.</div>';
+                return;
+            }
+            const stageIcon = s => s.toLowerCase().includes('no dr')?'😊':s.toLowerCase().includes('mild')?'🟡':s.toLowerCase().includes('moderate')?'🟠':s.toLowerCase().includes('severe')?'🔴':'🚨';
+            container.innerHTML = hist.map((e,i) => `
+                <div class="tl-card">
+                    <div class="tl-dot">${stageIcon(e.stage)}</div>
+                    <div class="tl-body">
+                        <div class="tl-date">${e.date}</div>
+                        <div class="tl-stage">${e.stage}</div>
+                        <div class="tl-meta">Confidence: ${e.confidence||'N/A'}</div>
+                        <div class="tl-actions">
+                            ${e.heatmap?`<img class="tl-thumb" src="${e.heatmap}" alt="heatmap">`:''}
+                            ${hist.length>1&&i<hist.length-1?`<button class="tl-compare-btn" onclick="openCompare(${i},${i+1})"><i class="fa-solid fa-code-compare"></i> Compare</button>`:''}
+                        </div>
+                    </div>
+                </div>`).join('');
+        }
+
+        function openCompare(idxA, idxB) {
+            const hist = getHistory();
+            const a = hist[idxA], b = hist[idxB];
+            document.getElementById('cmp-img-a').src = a.heatmap||'';
+            document.getElementById('cmp-img-b').src = b.heatmap||'';
+            document.getElementById('cmp-label-a').textContent = a.stage;
+            document.getElementById('cmp-label-b').textContent = b.stage;
+            document.getElementById('cmp-sub-a').textContent = a.date;
+            document.getElementById('cmp-sub-b').textContent = b.date;
+            document.getElementById('compare-modal').classList.add('open');
+        }
+
+        window.onload = function() { initApp(); };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+my_custom_dataset/
+aptos2019/
+*.db
+.vscode/
+__pycache__/
+*.pyc
